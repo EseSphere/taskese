@@ -68,5 +68,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = "Database query failed.";
     }
 }
-
-$conn->close();

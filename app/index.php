@@ -19,7 +19,7 @@ include_once('login_backend.php');
                         <a href="./">
                             <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i><?= $appName ?></h3>
                         </a>
-                        <h3>Sign In</h3>
+                        <h5 class="text-light">Sign In</h3>
                     </div>
                     <form action="" method="post" enctype="multipart/form-data" autocomplete="off" id="signupform">
                         <div class="form-floating mb-3">
@@ -33,9 +33,9 @@ include_once('login_backend.php');
                         <div class="d-flex align-items-center justify-content-between mb-4">
                             <div class="form-check">
                                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                                <label class="form-check-label" for="exampleCheck1">Check me in</label>
                             </div>
-                            <a href="#">Forgot Password</a>
+                            <a href="./forgot-password">Forgot Password</a>
                         </div>
                         <button type="submit" name="login" class="btn btn-primary py-3 w-100 mb-4">Sign In</button>
                         <p class="text-center mb-0">Don't have an Account? <a href="./signup">Sign Up</a></p>

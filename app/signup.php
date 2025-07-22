@@ -20,7 +20,7 @@ include_once('signup_backend.php');
                         <a href="index.html" class="">
                             <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i><?= $appName ?></h3>
                         </a>
-                        <h3>Sign Up</h3>
+                        <h5 class="text-light">Sign Up</h3>
                     </div>
                     <form action="" method="post" enctype="multipart/form-data" autocomplete="off" id="signupform">
                         <div class="form-floating mb-3">

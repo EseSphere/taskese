@@ -1,3 +1,4 @@
+<?php include_once('header-panel.php'); ?>
 <!-- Sale & Revenue Start Graph -->
 <div class="container-fluid pt-4 px-4"></div>
 
@@ -195,3 +196,4 @@
     </div>
 </div>
 <!-- Widgets End -->
+<?php include_once('footer-panel.php'); ?>
