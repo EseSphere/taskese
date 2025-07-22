@@ -1,4 +1,12 @@
 <?php
+ob_start();
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ./logout");
+    exit();
+}
+
 require_once __DIR__ . '/config.php';
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
@@ -11,7 +19,7 @@ try {
     exit('Internal Server Error');
 }
 
-$appName = 'TaskEse'; // Define your application name here 
-if (isset($_SESSION['appName'])) {
-    $appName = $_SESSION['appName'];
+$appName = 'TaskEse';
+if (isset($_SESSION['app_name'])) {
+    $appName = $_SESSION['app_name'];
 }

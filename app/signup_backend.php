@@ -2,7 +2,7 @@
 ob_start();
 session_start();
 
-if (isset($_POST['submit'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = trim($_POST['username']);
     $email = trim($_POST['email']);
     $password = $_POST['password'];
@@ -24,7 +24,7 @@ if (isset($_POST['submit'])) {
     if ($result) {
         $row = $result->fetch_assoc();
         $totalRows = $row['total'] ?? 0;
-        $user_uniqueId = $unique_id . '-' . $random . '-' . $initials . 'i045' . ($totalRows + 1);
+        $un986id = $unique_id . '-' . $random . '-' . $initials . 'i045' . ($totalRows + 1);
         $comp_uniqueId = $unique_id . '-' . $random . '-' . $id . '-' . $initials . 'i95' . ($totalRows + 1);
 
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -42,11 +42,11 @@ if (isset($_POST['submit'])) {
             } else {
                 $verification_code = random_int(100000, 999999);
                 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-                $stmt = $conn->prepare("INSERT INTO users (`username`, `email`, `verified`, `password`, `user_uniqueId`, `comp_uniqueId`, `verification_code`) VALUES (?, ?, ?, ?, ?, ?, ?)");
-                $stmt->bind_param("ssissss", $username, $email, $verified, $hashed_password, $user_uniqueId, $comp_uniqueId, $verification_code);
+                $stmt = $conn->prepare("INSERT INTO users (`username`, `email`, `verified`, `verification_code`, `password`, `un986id`, `comp_uniqueId`) VALUES (?, ?, ?, ?, ?, ?, ?)");
+                $stmt->bind_param("ssiisss", $username, $email, $verified, $verification_code, $hashed_password, $un986id, $comp_uniqueId);
                 if ($stmt->execute()) {
                     $_SESSION['email'] = $email;
-                    $_SESSION['user_uniqueId'] = $user_uniqueId;
+                    $_SESSION['un986id'] = $un986id;
                     $_SESSION['comp_uniqueId'] = $comp_uniqueId;
 
                     $subject = "Verify Your Account";
@@ -55,6 +55,8 @@ if (isset($_POST['submit'])) {
                     mail($email, $subject, $message, $headers);
 
                     $success = "Registration successful. Verification code sent to your email.";
+                    header("Location: ./verify?un986id=" . urlencode($un986id));
+                    exit();
                 } else {
                     $error = "Something went wrong. Please try again.";
                 }
