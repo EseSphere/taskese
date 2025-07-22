@@ -2,14 +2,24 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <title>Geosoft Care | Redirecting you</title>
-    <meta name="description" content="Geosoft care the perfect solution for home care and agency App based in the UK. It is built on solid partnership and experience spanning almost two decades within its management team." />
-    <meta name="keywords" content="HTML, CSS, Bootstrap, Tailwind, xampp, JavaScript, AJAX, PHP mySQL" />
-    <meta name="author" content="Ese Sphere Ent" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta property="og:image" content="img/gsLogo.png" />
-    <meta name="twitter:image" content="img/gsLogo.png" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title>TaskEse | Task Board - Collaborative Task and Workflow Management</title>
+    <meta name="title" content="Task Board Collaborative Task and Workflow Management">
+    <meta name="description" content="Task Board helps teams organize, prioritize, and complete work with real-time updates, detailed reporting, and seamless communication across devices.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourdomain.com/">
+    <meta property="og:title" content="Task Board Collaborative Task and Workflow Management">
+    <meta property="og:description" content="Task Board helps teams organize, prioritize, and complete work with real-time updates, detailed reporting, and seamless communication across devices.">
+    <meta property="og:image" content="https://yourdomain.com/images/og-image.jpg">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://yourdomain.com/">
+    <meta property="twitter:title" content="Task Board Collaborative Task and Workflow Management">
+    <meta property="twitter:description" content="Task Board helps teams organize, prioritize, and complete work with real-time updates, detailed reporting, and seamless communication across devices.">
+    <meta property="twitter:image" content="https://yourdomain.com/images/twitter-image.jpg">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <meta name="author" content="Task Board Team">
     <link rel="icon" href="img/gsLogo.png" />
     <link rel="icon" href="img/gsLogo.png" type="image/x-icon" />
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,700|Roboto:300,400,700&display=swap" rel="stylesheet">
@@ -20,59 +30,88 @@
     <link href="vendor/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <script>
-        window.location = 'page/';
+        window.location = 'app/';
     </script>
 </head>
-<style>
-    html,
-    body {
-        overflow-x: hidden;
-    }
-</style>
 
 <body>
+    <?php
+    // DB Connection
+    require_once __DIR__ . '/db_connect.php';
+    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
-    <div class="site-wrap">
+    // Get IP address
+    function getUserIP()
+    {
+        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+            return $_SERVER['HTTP_CLIENT_IP'];
+        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            return explode(',', $_SERVER['HTTP_X_FORWARDED_FOR'])[0];
+        } else {
+            return $_SERVER['REMOTE_ADDR'];
+        }
+    }
 
-        <div class="site-mobile-menu site-navbar-target">
-            <div class="site-mobile-menu-header">
-                <div class="site-mobile-menu-close mt-3">
-                    <span class="icofont-close js-menu-toggle"></span>
-                </div>
-            </div>
-            <div class="site-mobile-menu-body"></div>
-        </div>
-        <header class="site-navbar js-sticky-header site-navbar-target" role="banner">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-6 col-lg-2">
-                        <h1 class="mb-0 site-logo">
-                            <a href="./index" class="mb-0">
-                                <img src="./img/gsLogo - Copy.png" style="width: 180px; height:28px;" alt="">
-                            </a>
-                        </h1>
-                    </div>
-                    <div class="col-12 col-md-10 d-none d-lg-block">
-                        <nav class="site-navigation position-relative text-right" role="navigation">
-                            <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                                <li class="active"><a href="./index" class="nav-link">Home</a></li>
-                                <li><a href="./about-us" class="nav-link">About us</a></li>
-                                <li><a href="./pricing" class="nav-link">Pricing</a></li>
-                                <li class="">
-                                    <a href="./features" class="nav-link">Features</a>
-                                </li>
-                                </li>
-                                <li style="border-radius:5%; background-color:#FF9800; color:white; cursor:pointer;"><a href="./get-in-touch" class="nav-link">Get in touch</a></li>
-                                <li><a href="./contact" class="nav-link">Contact</a></li>
-                                <li><a href="./geosoft/files/admin-control-panel/control-panel/" target="_blank" class="nav-link">Sign In</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                    <div class="col-6 d-inline-block d-lg-none ml-md-0 py-3" style="position: relative; top: 3px;">
-                        <a href="#" class="burger site-menu-toggle js-menu-toggle" data-toggle="collapse" data-target="#main-navbar">
-                            <span></span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </header>
+    $ip = getUserIP();
+
+    // Get location info using free API (e.g. ip-api.com)
+    $locationData = @json_decode(file_get_contents("http://ip-api.com/json/{$ip}?fields=status,country,city"));
+
+    $country = ($locationData && $locationData->status == "success") ? $locationData->country : "Unknown";
+    $city = ($locationData && $locationData->status == "success") ? $locationData->city : "Unknown";
+
+    // Get User Agent Info
+    $userAgent = $_SERVER['HTTP_USER_AGENT'];
+
+    function getOS($userAgent)
+    {
+        $osArray = [
+            '/windows nt 10/i' => 'Windows 10',
+            '/windows nt 6.3/i' => 'Windows 8.1',
+            '/windows nt 6.2/i' => 'Windows 8',
+            '/windows nt 6.1/i' => 'Windows 7',
+            '/macintosh|mac os x/i' => 'Mac OS X',
+            '/linux/i' => 'Linux',
+            '/iphone/i' => 'iPhone',
+            '/android/i' => 'Android',
+        ];
+        foreach ($osArray as $regex => $value) {
+            if (preg_match($regex, $userAgent)) {
+                return $value;
+            }
+        }
+        return "Unknown OS";
+    }
+
+    function getBrowser($userAgent)
+    {
+        $browserArray = [
+            '/msie/i' => 'Internet Explorer',
+            '/firefox/i' => 'Firefox',
+            '/chrome/i' => 'Chrome',
+            '/safari/i' => 'Safari',
+            '/opera/i' => 'Opera',
+            '/edge/i' => 'Edge',
+        ];
+        foreach ($browserArray as $regex => $value) {
+            if (preg_match($regex, $userAgent)) {
+                return $value;
+            }
+        }
+        return "Unknown Browser";
+    }
+
+    $os = getOS($userAgent);
+    $browser = getBrowser($userAgent);
+
+    // Store data
+    $stmt = $conn->prepare("INSERT INTO user_tracking (ip_address, country, city, device, browser, os) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("ssssss", $ip, $country, $city, $userAgent, $browser, $os);
+    $stmt->execute();
+
+    $stmt->close();
+    $conn->close();
+    ?>
+</body>
+
+</html>
