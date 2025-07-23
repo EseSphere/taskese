@@ -1,6 +1,8 @@
 <?php
 include_once('header-panel.php');
 include_once('sub-header.php');
+include_once('add_task_backend.php'); // Ensure you have a database connection
+$un986id = $_SESSION['un986id'] ?? 'staff'; // Default to 'staff' if not set
 $comp_uniqueId = $_SESSION['comp_uniqueId'] ?? 'staff'; // Default to 'staff' if not set
 $sql = "SELECT * FROM users WHERE comp_uniqueId = '$comp_uniqueId' ORDER BY username ASC";
 $result = mysqli_query($conn, $sql);
@@ -12,7 +14,7 @@ $result = mysqli_query($conn, $sql);
             <div class="col-sm-4 col-xl-4">
                 <div class="bg-secondary rounded h-100 p-4">
                     <h5 class="mb-4 text-light">Add Task</h5>
-                    <form method="post" action="add_task.php" novalidate>
+                    <form method="post" action="./add-task" enctype="multipart/form-data" autocomplete="off" novalidate>
                         <div class="mb-3">
                             <label for="taskTitle" class="form-label text-light">Task Title</label>
                             <input type="text" name="task_title" id="taskTitle" class="form-control" placeholder="Enter task title" required>
@@ -20,13 +22,11 @@ $result = mysqli_query($conn, $sql);
 
                         <div class="mb-3">
                             <label for="staff" class="form-label text-light">Assign to Staff</label>
-                            <select name="staff_ids[]" id="staff" class="form-control" multiple required>
+                            <select name="un986id[]" id="staff" class="form-control" multiple required>
                                 <?php
                                 if (mysqli_num_rows($result) > 0) {
                                     while ($row = mysqli_fetch_assoc($result)) {
-                                ?>
-                                        <option value="<?= htmlspecialchars($row["un986id"]); ?>"><?= htmlspecialchars($row["username"]); ?></option>
-                                <?php
+                                        echo '<option value="' . htmlspecialchars($row["un986id"]) . '" data-username="' . htmlspecialchars($row["username"]) . '">' . htmlspecialchars($row["username"]) . '</option>';
                                     }
                                 } else {
                                     echo "0 results";
@@ -35,6 +35,8 @@ $result = mysqli_query($conn, $sql);
                             </select>
                             <small class="text-light">Hold Ctrl (Windows) or Command (Mac) to select multiple</small>
                         </div>
+
+                        <div id="usernameInputs"></div>
 
                         <div class="mb-3">
                             <label for="start_date" class="form-label text-light">Start</label>
@@ -46,8 +48,29 @@ $result = mysqli_query($conn, $sql);
                             <input type="datetime-local" name="end_date" id="end_date" class="form-control" required>
                         </div>
 
+                        <input name="comp_uniqueId" value="<?= htmlspecialchars($comp_uniqueId) ?>" hidden>
+
                         <button type="submit" class="btn btn-primary">Add Task</button>
                     </form>
+
+                    <script>
+                        document.querySelector('form').addEventListener('submit', function(e) {
+                            const staffSelect = document.getElementById('staff');
+                            const usernameInputsContainer = document.getElementById('usernameInputs');
+                            usernameInputsContainer.innerHTML = ''; // clear previous
+
+                            // For each selected option, create a hidden input for username[]
+                            Array.from(staffSelect.selectedOptions).forEach(opt => {
+                                const username = opt.getAttribute('data-username');
+                                const input = document.createElement('input');
+                                input.type = 'hidden';
+                                input.name = 'username[]';
+                                input.value = username;
+                                usernameInputsContainer.appendChild(input);
+                            });
+                        });
+                    </script>
+
                 </div>
             </div>
             <div class="col-sm-8 col-xl-8">
