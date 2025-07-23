@@ -1,0 +1,21 @@
+#dash-icons {
+    width: 100%;
+    height: 100%;
+    margin-top: -10px;
+}
+
+.sidebar .navbar-nav .nav-link,
+.sidebar .dropdown-menu .dropdown-item {
+    font-size: 0.85rem;
+    /* smaller font size for nav items */
+}
+
+.sidebar .navbar-brand h3 {
+    font-size: 1.2rem;
+    /* smaller app name */
+}
+
+.sidebar .ms-3 h6,
+.sidebar .ms-3 span {
+    font-size: 0.85rem;
+}

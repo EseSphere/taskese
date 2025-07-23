@@ -18,3 +18,8 @@ $description = 'Task Board helps teams organize, prioritize, and complete work w
 if (isset($_SESSION['description'])) {
     $description = $_SESSION['description'];
 }
+
+$appUrl = 'https://yourdomain.com/';
+if (isset($_SESSION['app_url'])) {
+    $appUrl = $_SESSION['app_url'];
+}

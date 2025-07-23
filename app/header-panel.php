@@ -10,16 +10,16 @@
     <meta name="title" content="">
     <meta name="description" content="<?= $description ?>">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://yourdomain.com/">
+    <meta property="og:url" content="h<?= $appUrl ?>">
     <meta property="og:title" content="<?= $subtitle ?>">
     <meta property="og:description" content="<?= $description ?>">
     <meta property="og:image" content="<?= $appIcon ?>">
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://yourdomain.com/">
+    <meta property="twitter:url" content="<?= $appUrl ?>">
     <meta property="twitter:title" content="<?= $subtitle ?>">
     <meta property="twitter:description" content="<?= $description ?>">
     <meta property="twitter:image" content="<?= $appIcon ?>">
-    <meta name="author" content="Task Board Team">
+    <meta name="author" content="Ese Sphere">
     <link href="<?= $appIcon ?>" rel="icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,6 +30,7 @@
     <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <link href="css/style2.css" rel="stylesheet">
 </head>
 
 <body>
@@ -41,11 +42,10 @@
         </div>
         <!-- Spinner End -->
 
-        <!-- Sidebar Start -->
         <div style="background-color: #192a56;" class="sidebar pe-4 pb-3">
             <nav class="navbar navbar-dark">
-                <a href="index.html" class="navbar-brand mx-4 mb-3">
-                    <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>DarkPan</h3>
+                <a href="./index" class="navbar-brand mx-4 mb-3">
+                    <h3 class="text-white"><i class="fa fa-user-edit me-2"></i><?= $appName ?></h3>
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
@@ -53,33 +53,104 @@
                         <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                     </div>
                     <div class="ms-3">
-                        <h6 class="mb-0">Jhon Doe</h6>
+                        <h6 class="mb-0"><?= $_SESSION['username'] ?> </h6>
                         <span>Admin</span>
                     </div>
                 </div>
+
                 <div class="navbar-nav w-100">
-                    <a href="index.html" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <a href="./dashboard" class="nav-item nav-link active">
+                        <i class="fa fa-tachometer-alt me-2"></i>Dashboard
+                    </a>
+
+                    <!-- Task Management -->
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Elements</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <i class="fa fa-tasks me-2"></i>Task Management
+                        </a>
                         <div class="dropdown-menu bg-transparent border-0">
-                            <a href="button.html" class="dropdown-item">Buttons</a>
-                            <a href="typography.html" class="dropdown-item">Typography</a>
-                            <a href="element.html" class="dropdown-item">Other Elements</a>
+                            <a href="./add-task" class="dropdown-item">Add New Task</a>
+                            <a href="./subtasks" class="dropdown-item">Subtasks & Checklists</a>
+                            <a href="./recurring-tasks" class="dropdown-item">Recurring Tasks</a>
+                            <a href="./delegation" class="dropdown-item">Task Assignment</a>
+                            <a href="./daily-summary" class="dropdown-item">Task Summary</a>
                         </div>
                     </div>
-                    <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Widgets</a>
-                    <a href="form.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Forms</a>
-                    <a href="table.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Tables</a>
-                    <a href="chart.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Charts</a>
+
+                    <!-- Productivity Tools -->
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Pages</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <i class="fa fa-lightbulb me-2"></i>Productivity Tools
+                        </a>
                         <div class="dropdown-menu bg-transparent border-0">
-                            <a href="signin.html" class="dropdown-item">Sign In</a>
-                            <a href="signup.html" class="dropdown-item">Sign Up</a>
-                            <a href="404.html" class="dropdown-item">404 Error</a>
-                            <a href="blank.html" class="dropdown-item">Blank Page</a>
+                            <a href="./task-chat" class="dropdown-item">Task Comments & Chat</a>
+                            <a href="./voice-notes" class="dropdown-item">Voice Notes</a>
+                            <a href="./team-boards" class="dropdown-item">Team Boards</a>
+                            <a href="./mentions" class="dropdown-item">Mentions & Reactions</a>
                         </div>
                     </div>
+
+                    <!-- Document Management -->
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <i class="fa fa-folder me-2"></i>Documents
+                        </a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a href="./version-history" class="dropdown-item">Version History</a>
+                            <a href="./recent-files" class="dropdown-item">Recent Files</a>
+                            <a href="./document-preview" class="dropdown-item">Document Preview</a>
+                            <a href="./cloud-integration" class="dropdown-item">Cloud Integration</a>
+                        </div>
+                    </div>
+
+                    <!-- Insights & Reporting -->
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <i class="fa fa-chart-line me-2"></i>Insights
+                        </a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a href="./analytics" class="dropdown-item">Analytics Dashboard</a>
+                            <a href="./completion-rate" class="dropdown-item">Task Completion Rate</a>
+                            <a href="./timesheets" class="dropdown-item">Timesheet Logging</a>
+                            <a href="./workload" class="dropdown-item">Workload Balancer</a>
+                        </div>
+                    </div>
+
+                    <!-- Automation & Engagement -->
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <i class="fa fa-rocket me-2"></i>Workflow
+                        </a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a href="./gamification" class="dropdown-item">Gamification</a>
+                            <a href="./suggestions" class="dropdown-item">Smart Suggestions</a>
+                            <a href="./push-notifications" class="dropdown-item">Push Notifications</a>
+                            <a href="./recap" class="dropdown-item">End-of-Day Recap</a>
+                        </div>
+                    </div>
+                    <?php
+                    $sql = "SELECT * FROM users WHERE email = '" . $_SESSION['email'] . "' AND admin = '1'";
+                    $result = mysqli_query($conn, $sql);
+                    if (mysqli_num_rows($result) > 0) {
+                        $admin = mysqli_fetch_assoc($result);
+                        if ($admin['admin'] == 1) {
+                    ?>
+                            <!-- Admin Settings -->
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                                    <i class="fa fa-cog me-2"></i>Admin & Settings
+                                </a>
+                                <div class="dropdown-menu bg-transparent border-0">
+                                    <a href="./access-control" class="dropdown-item">Access Control</a>
+                                    <a href="./audit" class="dropdown-item">Audit Logs</a>
+                                    <a href="./availability" class="dropdown-item">Staff Availability</a>
+                                    <a href="./templates" class="dropdown-item">Task Templates</a>
+                                </div>
+                            </div>
+                    <?php
+                        }
+                    }
+                    ?>
                 </div>
             </nav>
         </div>
@@ -87,8 +158,7 @@
 
         <!-- Content Start -->
         <div class="content">
-            <!-- Navbar Start -->
-            <nav class="navbar navbar-expand navbar-dark sticky-top px-4 py-0">
+            <nav class="navbar navbar-expand navbar-dark bg-white sticky-top px-4 py-0">
                 <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
                     <h2 class="text-primary mb-0"><i class="fa fa-user-edit"></i></h2>
                 </a>
@@ -96,7 +166,7 @@
                     <i class="fa fa-bars"></i>
                 </a>
                 <form class="d-none d-md-flex ms-4">
-                    <input class="form-control bg-white border-0" type="search" placeholder="Search">
+                    <input class="form-control bg-white border-1" type="search" placeholder="Search">
                 </form>
                 <div class="navbar-nav align-items-center ms-auto">
                     <div class="nav-item dropdown">
@@ -176,3 +246,5 @@
                 </div>
             </nav>
             <!-- Navbar End -->
+
+            <div class="container-fluid pt-4 px-4"></div>

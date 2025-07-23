@@ -19,7 +19,7 @@
     <meta property="twitter:title" content="<?= $subtitle ?>">
     <meta property="twitter:description" content="<?= $description ?>">
     <meta property="twitter:image" content="<?= $appIcon ?>">
-    <meta name="author" content="Task Board Team">
+    <meta name="author" content="Ese Sphere">
     <link href="<?= $appIcon ?>" rel="icon">
     <link rel="icon" href="<?= $appIcon ?>" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">

@@ -19,7 +19,7 @@
     <meta property="twitter:description" content="Task Board helps teams organize, prioritize, and complete work with real-time updates, detailed reporting, and seamless communication across devices.">
     <meta property="twitter:image" content="https://yourdomain.com/images/twitter-image.jpg">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <meta name="author" content="Task Board Team">
+    <meta name="author" content="Ese Sphere">
     <link rel="icon" href="img/gsLogo.png" />
     <link rel="icon" href="img/gsLogo.png" type="image/x-icon" />
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,700|Roboto:300,400,700&display=swap" rel="stylesheet">
