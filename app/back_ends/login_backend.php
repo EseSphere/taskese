@@ -16,8 +16,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($result->num_rows === 1) {
             $user = $result->fetch_assoc();
+
             if (password_verify($password, $user['password'])) {
                 if ($user['verified'] == 1) {
+
+                    // Update last login + IP
+                    $ip_address = $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0';
+                    $last_login = date("Y-m-d H:i:s");
+
+                    $updateStmt = $conn->prepare("UPDATE users SET last_login = ?, ip_address = ? WHERE id = ?");
+                    $updateStmt->bind_param("ssi", $last_login, $ip_address, $user['id']);
+                    $updateStmt->execute();
+                    $updateStmt->close();
+
                     // Set session variables
                     $_SESSION['user_id'] = $user['id'];
                     $_SESSION['username'] = $user['username'];
@@ -41,3 +52,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->close();
     }
 }
+
+$conn->close();

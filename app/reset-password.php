@@ -1,6 +1,6 @@
 <?php
 include_once('header.php');
-include_once('reset_password_backend.php');
+include_once('./back_ends/reset_password_backend.php');
 ?>
 <div class="container-fluid position-relative d-flex p-0">
     <div id="spinner" class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
