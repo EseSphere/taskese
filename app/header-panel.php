@@ -129,11 +129,11 @@
                         </div>
                     </div>
                     <?php
-                    $sql = "SELECT * FROM users WHERE email = '" . $_SESSION['email'] . "' AND admin = '1'";
+                    $sql = "SELECT * FROM users WHERE email = '" . $_SESSION['email'] . "' AND verified = '1'";
                     $result = mysqli_query($conn, $sql);
                     if (mysqli_num_rows($result) > 0) {
-                        $admin = mysqli_fetch_assoc($result);
-                        if ($admin['admin'] == 1) {
+                        $row = mysqli_fetch_assoc($result);
+                        if ($row['verified'] == 1) {
                     ?>
                             <!-- Admin Settings -->
                             <div class="nav-item dropdown">

@@ -3,7 +3,6 @@ include_once('header-panel.php');
 include_once('sub-header.php');
 ?>
 
-
 <!-- Recent Sales Start -->
 <div class="container-fluid pt-4 px-4">
     <div class="bg-secondary text-center rounded p-4">

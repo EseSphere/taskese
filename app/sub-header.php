@@ -4,8 +4,8 @@
         <div class="col-6 col-sm-2 col-md-2 col-xl-2">
             <div class="card bg-secondary text-light rounded shadow-sm h-100">
                 <div class="card-body d-flex align-items-center">
-                    <div class="me-3">
-                        <img src="./img/8028200.png" alt="Tasks Icon" class="img-fluid" style="width: 60px; height: auto;">
+                    <div id="icons-bg" class="me-3">
+                        <i class="bi bi-check2-square fs-1"></i>
                     </div>
                     <div>
                         <h6 class="card-title mb-1 text-light">Allocated</h6>
@@ -18,8 +18,8 @@
         <div class="col-6 col-sm-2 col-md-2 col-xl-2">
             <div class="card bg-secondary text-light rounded shadow-sm h-100">
                 <div class="card-body d-flex align-items-center">
-                    <div class="me-3">
-                        <img src="./img/8649234.png" alt="Tasks Icon" class="img-fluid" style="width: 60px; height: auto;">
+                    <div id="icons-bg" class="me-3">
+                        <i class="bi bi-calendar-day fs-1"></i>
                     </div>
                     <div>
                         <h6 class="card-title mb-1 text-light">Today Tasks</h6>
@@ -32,8 +32,8 @@
         <div class="col-6 col-sm-2 col-md-2 col-xl-2">
             <div class="card bg-secondary text-light rounded shadow-sm h-100">
                 <div class="card-body d-flex align-items-center">
-                    <div class="me-3">
-                        <img src="./img/577645.webp" alt="Tasks Icon" class="img-fluid" style="width: 60px; height: auto;">
+                    <div id="icons-bg" class="me-3">
+                        <i class="bi bi-check-circle fs-1"></i>
                     </div>
                     <div>
                         <h6 class="card-title mb-1 text-light">Completed</h6>
@@ -46,8 +46,8 @@
         <div class="col-6 col-sm-2 col-md-2 col-xl-2">
             <div class="card bg-secondary text-light rounded shadow-sm h-100">
                 <div class="card-body d-flex align-items-center">
-                    <div class="me-3">
-                        <img src="./img/8028200.png" alt="Tasks Icon" class="img-fluid" style="width: 60px; height: auto;">
+                    <div id="icons-bg" class="me-3">
+                        <i class="bi bi-clock fs-1"></i>
                     </div>
                     <div>
                         <h6 class="card-title mb-1 text-light">Due Soon</h6>
@@ -60,8 +60,8 @@
         <div class="col-6 col-sm-2 col-md-2 col-xl-2">
             <div class="card bg-secondary text-light rounded shadow-sm h-100">
                 <div class="card-body d-flex align-items-center">
-                    <div class="me-3">
-                        <img src="./img/16759914.png" alt="Tasks Icon" class="img-fluid" style="width: 60px; height: auto;">
+                    <div id="icons-bg" class="me-3">
+                        <i class="bi bi-arrow-repeat fs-1"></i>
                     </div>
                     <div>
                         <h6 class="card-title mb-1 text-light">In Progress</h6>
@@ -74,8 +74,8 @@
         <div class="col-6 col-sm-2 col-md-2 col-xl-2">
             <div class="card bg-secondary text-light rounded shadow-sm h-100">
                 <div class="card-body d-flex align-items-center">
-                    <div class="me-3">
-                        <img src="./img/8859586.png" alt="Tasks Icon" class="img-fluid" style="width: 60px; height: auto;">
+                    <div id="icons-bg" class="me-3">
+                        <i class="bi bi-people fs-1"></i>
                     </div>
                     <div>
                         <h6 class="card-title mb-1 text-light">Colleages</h6>
